@@ -1,0 +1,73 @@
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+Button Call. floor:5
+[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.LiftController.callLiftToFloor(int) TO STATE::> valid
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+floor: 0 id:2liftIsMoving false doorIsOpenfalse
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorClosed
+Lift is moving
+move floor: 0
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+Lift moving to next floor : true
+move floor: 0
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+current floor:0
+[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+current floor:0
+[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+current floor:0
+[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+current floor:4
+[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+Lift moving to next floor : true
+move floor: 4
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+Destination reached from moving +4
+open door floor: 4
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorOpen
+Door is closed due to timer
+floor: 4 id:2liftIsMoving false doorIsOpenfalse
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.closeDoors() TO STATE::> doorClosed
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorClosed
+Lift is moving
+move floor: 4
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+current floor:4
+[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
+Destination reached from moving +4
+open door floor: 5
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorOpen
+Door is closed due to timer
+floor: 5 id:2liftIsMoving false doorIsOpenfalse
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.closeDoors() TO STATE::> doorClosed
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorClosed
+Lift is moving
+move floor: 5
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift

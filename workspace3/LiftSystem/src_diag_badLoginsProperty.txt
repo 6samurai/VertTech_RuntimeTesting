@@ -1,0 +1,9 @@
+digraph _logic_badLoginsProperty {
+rankdir=LR;
+node [shape = circle]; validHeight;
+node [shape = octagon]; overLimit;
+node [shape = point]; _s_s;
+_s_s -> validHeight;
+validHeight -> validHeight [ label = "(1) liftGetMaxHeight\\\\maxLiftHeight = numFloors ; System . out . println ( \" Setting max possible height of lift \" ) ; "];
+validHeight -> overLimit [ label = "(2) liftGetMaxHeight\\floorNumber > maxLiftHeight || floorNumber < minLiftHeight \\maxLiftHeight = numFloors ; System . out . println ( \" Lift \" + liftNumber + \" moved beyond the specified limits to level  \" + floorNumber ) ; "];
+}

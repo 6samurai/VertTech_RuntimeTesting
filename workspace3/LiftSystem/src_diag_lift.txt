@@ -1,0 +1,19 @@
+digraph _logic_lift {
+rankdir=LR;
+node [shape = circle]; move open close waiting waiting;
+node [shape = octagon]; error;
+node [shape = point]; _s_s;
+_s_s -> waiting;
+move -> open [ label = "(1) openDoors\\open != true \\moving = false ; open = true ; openClose . reset ( ) ; System . out . println ( \" move - open \" ) ; "];
+move -> move [ label = "(2) setMoving\\moving == true \\System . out . println ( \" move - move \" ) ; "];
+move -> error [ label = "(3) closeDoors\\\\System . out . println ( \" move - error : closeDoors \" ) ; "];
+waiting -> move [ label = "(1) setMoving\\moving == false && ( moveClock . compareTo ( 3 ) < 0 ) \\moving = true ; System . out . println ( \" waiting - move lift  \" + moveClock . current ( ) ) ; "];
+waiting -> open [ label = "(2) openDoors\\open != true \\open = true ; openClose . reset ( ) ; System . out . println ( \" waiting - open \" ) ; "];
+close -> waiting [ label = "(1) setMoving\\\\System . out . println ( \" close - waiting \" ) ; "];
+close -> error [ label = "(2) closeDoors\\\\System . out . println ( \" close - error : closeDoors \" ) ; "];
+close -> error [ label = "(3) setMoving\\( moveClock . compareTo ( 3 ) > 0 ) \\System . out . println ( \" close - error : move & clock > 3  \" + moveClock . current ( ) ) ; "];
+open -> close [ label = "(1) closeDoors\\open == true && ( openClose . compareTo ( 3 ) >= 0 ) \\open = false ; moveClock . reset ( ) ; System . out . println ( \" open - close  \" + openClose . current ( ) ) ; "];
+open -> error [ label = "(2) closeDoors\\open == true && ( openClose . compareTo ( 3 ) < 0 ) \\open = false ; moveClock . reset ( ) ; System . out . println ( \" open - error  \" + openClose . current ( ) ) ; "];
+open -> error [ label = "(3) setMoving\\\\System . out . println ( \" open - error : Move Lift \" ) ; "];
+open -> error [ label = "(4) openDoors\\\\System . out . println ( \" open - error : openDoors \" ) ; "];
+}

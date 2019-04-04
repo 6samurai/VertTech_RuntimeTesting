@@ -1,0 +1,19 @@
+digraph _logic_controller {
+rankdir=LR;
+node [shape = circle]; working idle serviced idle;
+node [shape = octagon]; error;
+node [shape = point]; _s_s;
+_s_s -> idle;
+idle -> working [ label = "(1) callLiftToFloor\\\\servicing = false ; System . out . println ( \" idle - working : Call \" ) ; "];
+idle -> working [ label = "(2) moveLift\\\\servicing = false ; System . out . println ( \" idle - working : Move  \" ) ; "];
+idle -> error [ label = "(3) openLiftDoor\\\\System . out . println ( \" idle - error : Open \" ) ; "];
+idle -> error [ label = "(4) closeLiftDoor\\\\System . out . println ( \" idle - error : Close \" ) ; "];
+working -> serviced [ label = "(1) openLiftDoor\\\\System . out . println ( \" working - serviced : Open \" ) ; "];
+working -> idle [ label = "(2) closeLiftDoor\\servicing == false \\System . out . println ( \" working - idle : Close \" ) ; "];
+working -> working [ label = "(3) callLiftToFloor\\\\servicing = true ; System . out . println ( \" working - working : Call \" ) ; "];
+working -> error [ label = "(4) moveLift\\\\System . out . println ( \" working - error : Move \" ) ; "];
+serviced -> idle [ label = "(1) closeLiftDoor\\servicing == false \\System . out . println ( \" service - idle \" ) ; "];
+serviced -> working [ label = "(2) callLiftToFloor\\\\System . out . println ( \" service - working : Call \" ) ; "];
+serviced -> working [ label = "(3) closeLiftDoor\\servicing == true \\servicing = false ; System . out . println ( \" service - working : Close + servicing \" ) ; "];
+serviced -> error [ label = "(4) openLiftDoor\\servicing == false \\System . out . println ( \" service - error : Open  \" + servicing ) ; "];
+}
