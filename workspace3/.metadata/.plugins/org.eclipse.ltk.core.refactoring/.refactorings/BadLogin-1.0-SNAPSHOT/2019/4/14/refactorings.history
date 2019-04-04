@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;com.uom.cps3225&apos; to &apos;LiftSystem/src&apos;&#x0D;&#x0A;- Original project: &apos;BadLogin-1.0-SNAPSHOT&apos;&#x0D;&#x0A;- Destination element: &apos;LiftSystem/src&apos;&#x0D;&#x0A;- Original element: &apos;BadLogin-1.0-SNAPSHOT/src/test/java/com.uom.cps3225&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="=LiftSystem/src" element1="/src\/test\/java&lt;com.uom.cps3225" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1554406999654" version="1.0"/>
+</session>
