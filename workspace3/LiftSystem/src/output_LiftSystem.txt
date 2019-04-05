@@ -1,73 +1,235 @@
 [LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-Button Call. floor:5
-[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.LiftController.callLiftToFloor(int) TO STATE::> valid
+floor: 0 id:3liftIsMoving false doorIsOpenfalse
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorClosed
+Door is open
+open door floor: 0
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
 [LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
 floor: 0 id:2liftIsMoving false doorIsOpenfalse
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorClosed
-Lift is moving
-move floor: 0
-[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-Lift moving to next floor : true
-move floor: 0
-[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-current floor:0
-[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-current floor:0
-[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-current floor:0
-[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-current floor:4
-[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-Lift moving to next floor : true
-move floor: 4
-[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-Destination reached from moving +4
-open door floor: 4
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorClosed
+Door is open
+open door floor: 0
 [LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
 [LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorOpen
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorOpen
-Door is closed due to timer
-floor: 4 id:2liftIsMoving false doorIsOpenfalse
-[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.closeDoors() TO STATE::> doorClosed
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorClosed
-Lift is moving
-move floor: 4
-[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-current floor:4
-[LiftControllerProperties]MOVED ON METHODCALL: void com.liftmania.gui.Shaft.animateUp(int) TO STATE::> valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>moveLift
-Destination reached from moving +4
-open door floor: 5
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+floor: 0 id:3liftIsMoving false doorIsOpenfalse
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorClosed
+Door is open
+open door floor: 0
 [LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
 [LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorOpen
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorOpen
-Door is closed due to timer
-floor: 5 id:2liftIsMoving false doorIsOpenfalse
-[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.closeDoors() TO STATE::> doorClosed
-[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@33b55c8e ) STATE::>doorClosed
-Lift is moving
-move floor: 5
-[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+floor: 0 id:4liftIsMoving false doorIsOpenfalse
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorClosed
+Door is open
+open door floor: 0
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+floor: 0 id:7liftIsMoving false doorIsOpenfalse
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorClosed
+Door is open
+open door floor: 0
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+floor: 0 id:0liftIsMoving false doorIsOpenfalse
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorClosed
+Door is open
+open door floor: 0
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+floor: 0 id:6liftIsMoving false doorIsOpenfalse
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorClosed
+Door is open
+open door floor: 0
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+floor: 0 id:5liftIsMoving false doorIsOpenfalse
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorClosed
+Door is open
+open door floor: 0
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.openDoors() TO STATE::> doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftControllerProperties]AUTOMATON::> LiftControllerProperties() STATE::>valid
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@270421f5 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@763d9750 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@5c0369c4 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@2be94b0f ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@d70c109 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@17ed40e0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@31b7dea0 ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@6979e8cb ) STATE::>doorOpen

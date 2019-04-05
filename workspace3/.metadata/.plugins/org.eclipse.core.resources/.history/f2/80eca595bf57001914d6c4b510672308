@@ -1,0 +1,12 @@
+package inputGenerator;
+
+import com.liftmania.*;
+public class ModelTesting_InputGenerator {
+
+
+	public static void main(String[] args) throws Exception {
+		new LiftController(6, 1, false);
+		//	new LiftController(6, 3, true);
+		//	new LiftController(6, 1, false);
+	}
+}

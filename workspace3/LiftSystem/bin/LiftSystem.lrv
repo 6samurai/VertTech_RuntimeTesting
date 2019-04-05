@@ -134,8 +134,8 @@ GLOBAL {
 				doorClosed -> doorClosed[setMoving()\ \System.out.println("Door is closed and idle");]
 				
 		%%		doorOpen ->errorState[closeDoors\ doorIsOpen && !liftIsMoving && closeDoorClock.compareTo(3)<0\;System.out.println("Door closed too early");]			
-				doorOpen -> errorState[setMoving(liftIsMoving)\\System.out.println("Move call received when door is open" );]
-		%%		doorOpen -> errorState[openDoors()\\System.out.println("Mutliple open door actions registered error" );]
+				doorOpen -> errorState[setMoving(liftIsMoving)\liftIsMoving\System.out.println("Move call received when door is open 2" + liftIsMoving );]
+		%%		doorOpen -> errorState[openDoors()\\System.out.println("Multiple open door actions registered error" );]
 				doorClosed -> errorState[closeDoors()\moveLiftClock.compareTo(3) > 0\System.out.println("Lift moved after more than 3 seconds error" );]
 		%%		doorClosed -> errorState[setMoving(moving)\\System.out.println("Multiple close door actions registered error" );]			
 		%%		doorClosed -> errorState[closeDoors()\\System.out.println("Close doors called after move error" );]

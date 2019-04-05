@@ -10,7 +10,7 @@ doorClosed -> doorClosed [ label = "(3) setMoving\\\\System . out . println ( \"
 doorClosed -> errorState [ label = "(4) closeDoors\\moveLiftClock . compareTo ( 3 ) > 0 \\System . out . println ( \" Lift moved after more than 3 seconds error \" ) ; "];
 doorClosed -> errorState [ label = "(5) closeDoors\\openLiftCount % 2 == 1 \\System . out . println ( \" open and close door not alternating - close \" ) ; "];
 doorOpen -> doorClosed [ label = "(1) closeDoors\\doorIsOpen && ! liftIsMoving && closeDoorClock . compareTo ( 3 ) >= 0 && openLiftCount % 2 == 1 \\openLiftCount -- ; moveLiftClock . reset ( ) ; doorIsOpen = false ; System . out . println ( \" Door is closed due to timer \" ) ; "];
-doorOpen -> errorState [ label = "(2) setMoving\\\\System . out . println ( \" Move call received when door is open \" ) ; "];
+doorOpen -> errorState [ label = "(2) setMoving\\liftIsMoving \\System . out . println ( \" Move call received when door is open 2 \" + liftIsMoving ) ; "];
 doorOpen -> errorState [ label = "(3) openDoors\\floor < minFloor || floor > maxFloor \\System . out . println ( \" Lift moved beyond specified limit \" ) ; "];
 doorOpen -> errorState [ label = "(4) openDoors\\openLiftCount % 2 == 0 \\System . out . println ( \" open and close door not alternating - open \" ) ; "];
 moveLift -> doorOpen [ label = "(1) openDoors\\! doorIsOpen && liftIsMoving && openLiftCount % 2 == 0 \\openLiftCount ++ ; doorIsOpen = true ; liftIsMoving = false ; closeDoorClock . reset ( ) ; System . out . println ( \" Destination reached from moving + \" + floor ) ; if ( ! serviceList . isEmpty ( ) ) serviceList . remove ( Integer . valueOf ( floor ) ) ; else if ( ! firstIter ) missedOpen = true ; "];

@@ -26,7 +26,7 @@ public class LiftController {
 
 		// Start visualiser
 		visualiser = new LiftsVisualiser(this, numFloors, numLifts);
-		
+
 		if (randomizePositons) {
 			for (int i=0; i < numLifts; i++) {
 				moveLift(lifts[i], (int)(Math.random() * (numFloors)));
@@ -37,10 +37,10 @@ public class LiftController {
 	public Lift[] getLifts() {
 		return lifts;
 	}
-	
+
 	/**
 	 * Move a lift to a floor.
-	 * 
+	 *
 	 * @param liftNumber
 	 *            - The lift number (1-based)
 	 * @param floorNumber
@@ -49,30 +49,33 @@ public class LiftController {
 	public void moveLift(int liftNumber, int floorNumber) {
 		moveLift(lifts[liftNumber],  floorNumber);
 	}
-	
+
 	public void moveLift(Lift lift, int floorNumber) {
 		boolean moveUp = true;
-		
-	    if(lifts[lift.id].floor > floorNumber){
-	    	moveUp = false;
-	    }
-	    
-	    lifts[lift.id].setIsMovingUp(moveUp);
+
+		if(lifts[lift.id].floor > floorNumber){
+			moveUp = false;
+		}
+
+		lifts[lift.id].setIsMovingUp(moveUp);
+    //   lifts[lift.id].setMoving(true);
 		//The animation process is trusted with updating the state of the lift (floorNumber, moving, etc)
 		visualiser.animateLiftMovement(lift, floorNumber);
 	}
-	
+
+
+
 
 	/**
 	 * Closes the door of a particular lift.
-	 * 
+	 *
 	 * @param liftNumber
 	 *            - The lift number (0-based)
 	 */
-	public void closeLiftDoor(int liftNumber) {
+	public void closeLiftDoor(int liftNumber, int floor) {
 		Lift lift = lifts[liftNumber];
 		lift.closeDoors();
-
+		visualiser.animateLiftClose(lift, floor);
 /*		visualiser.addAnimationCommand(new AnimationCommand(
 				AnimationCommand.Command.close, liftNumber, lift.getFloor(), -1));
 	*/
@@ -80,13 +83,14 @@ public class LiftController {
 
 	/**
 	 * Open the door of a particular lift.
-	 * 
+	 *
 	 * @param liftNumber
 	 *            - The lift number (0-based)
 	 */
-	public void openLiftDoor(int liftNumber) {
+	public void openLiftDoor(int liftNumber, int floor) {
 		Lift lift = lifts[liftNumber];
 		lift.openDoors();
+		visualiser.animateLiftOpen(lift, floor);
 		/*visualiser.addAnimationCommand(new AnimationCommand(
 				AnimationCommand.Command.open, liftNumber, lift.getFloor(), -1));*/
 	}
@@ -95,26 +99,27 @@ public class LiftController {
 	 * Calls a lift to a particular floor.
 	 * @param floor - The floor number (0-based).
 	 */
-	
+
 	public void callLiftToFloor(int floor) {
-		
+
 		//Find lifts closest to the required floor
 		ArrayList<Lift> closestLifts = getClosestLifts(floor);
-	
-		
+
+
 		if (closestLifts.size() == 0) {
 			throw new RuntimeException("Could not find an available lift. input floor"+  floor+" " + lifts[0].floor +" " + lifts[0].doorsOpen +" " +  lifts[0].moveUp + " " + lifts[0].moving);
 		}
-		
+
 		//Pick random lift
 		Lift lift = closestLifts.get((int)(Math.random() * (closestLifts.size())));
-		
+
 		moveLift(lift, floor);
-
+		openLiftDoor(lift.id,floor);
+		closeLiftDoor(lift.id,floor);
 	}
-	
 
-	
+
+
 	public ArrayList<Lift>getClosestLifts(int floor){
 		ArrayList<Lift> result = new ArrayList<Lift>();
 
@@ -139,13 +144,13 @@ public class LiftController {
 		return result;
 
 	}
-	
-	
-	
+
+
+
 	public static void main(String[] args) throws Exception {
 		new LiftController(6, 3, false);
 		//	new LiftController(6, 3, true);
-	//	new LiftController(6, 1, false);
+		//	new LiftController(6, 1, false);
 	}
 
 }

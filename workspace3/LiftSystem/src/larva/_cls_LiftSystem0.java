@@ -21,7 +21,7 @@ public static LinkedHashMap<_cls_LiftSystem0,_cls_LiftSystem0> _cls_LiftSystem0_
 static{
 try{
 RunningClock.start();
-pw = new PrintWriter("C:\\Users\\Owner\\workspace2\\LiftSystem/src/output_LiftSystem.txt");
+pw = new PrintWriter("C:\\Users\\Owner\\Desktop\\GitHub Projects\\Ver_Tech\\RuntimeVer_Testing\\VertTech_RuntimeTesting\\workspace3\\LiftSystem/src/output_LiftSystem.txt");
 
 root = new _cls_LiftSystem0();
 _cls_LiftSystem0_instances.put(root, root);
@@ -116,7 +116,7 @@ else if (no_automata < 0)
 }catch(Exception ex){ex.printStackTrace();}
 }
 
-int _state_id_LiftControllerProperties = 5;
+int _state_id_LiftControllerProperties = 10;
 
 public void _performLogic_LiftControllerProperties(String _info, int... _event) {
 
@@ -124,50 +124,50 @@ _cls_LiftSystem0.pw.println("[LiftControllerProperties]AUTOMATON::> LiftControll
 _cls_LiftSystem0.pw.flush();
 
 if (0==1){}
-else if (_state_id_LiftControllerProperties==5){
+else if (_state_id_LiftControllerProperties==10){
 		if (1==0){}
-		else if ((_occurredEvent(_event,6/*callLiftToFloor*/)) && (serviceList .isEmpty ())){
+		else if ((_occurredEvent(_event,18/*callLiftToFloor*/)) && (serviceList .isEmpty ())){
 		firstIter =false ;
 _cls_LiftSystem0.pw .println ("Button Call. floor:"+floor );
 serviceList .add (floor );
 
-		_state_id_LiftControllerProperties = 5;//moving to state valid
+		_state_id_LiftControllerProperties = 10;//moving to state valid
 		_goto_LiftControllerProperties(_info);
 		}
-		else if ((_occurredEvent(_event,16/*animateDown*/)) && (missedOpenDown ||missedOpen )){
+		else if ((_occurredEvent(_event,28/*animateDown*/)) && (missedOpenDown ||missedOpen )){
 		_cls_LiftSystem0.pw .println ("Missed moving down floor error");
 
-		_state_id_LiftControllerProperties = 3;//moving to state error
+		_state_id_LiftControllerProperties = 8;//moving to state error
 		_goto_LiftControllerProperties(_info);
 		}
-		else if ((_occurredEvent(_event,16/*animateDown*/)) && (!missedOpenDown &&!firstIter )){
+		else if ((_occurredEvent(_event,28/*animateDown*/)) && (!missedOpenDown &&!firstIter )){
 		_cls_LiftSystem0.pw .println ("current floor:"+floor );
 if (!serviceList .isEmpty ()){for (int i =0 ;
 i <serviceList .size ();
 i ++){if (currentFloorDown -1 ==serviceList .get (i )){missedOpenDown =true ;
 }}}
-		_state_id_LiftControllerProperties = 5;//moving to state valid
+		_state_id_LiftControllerProperties = 10;//moving to state valid
 		_goto_LiftControllerProperties(_info);
 		}
-		else if ((_occurredEvent(_event,14/*animateUp*/)) && (missedOpenUp ||missedOpen )){
+		else if ((_occurredEvent(_event,26/*animateUp*/)) && (missedOpenUp ||missedOpen )){
 		_cls_LiftSystem0.pw .println ("Missed moving up floor error");
 
-		_state_id_LiftControllerProperties = 3;//moving to state error
+		_state_id_LiftControllerProperties = 8;//moving to state error
 		_goto_LiftControllerProperties(_info);
 		}
-		else if ((_occurredEvent(_event,14/*animateUp*/)) && (!missedOpenUp &&!firstIter )){
+		else if ((_occurredEvent(_event,26/*animateUp*/)) && (!missedOpenUp &&!firstIter )){
 		_cls_LiftSystem0.pw .println ("current floor:"+floor );
 if (!serviceList .isEmpty ()){for (int i =0 ;
 i <serviceList .size ();
 i ++){if (currentFloorUp +1 ==serviceList .get (i )){missedOpenUp =true ;
 }}}
-		_state_id_LiftControllerProperties = 5;//moving to state valid
+		_state_id_LiftControllerProperties = 10;//moving to state valid
 		_goto_LiftControllerProperties(_info);
 		}
-		else if ((_occurredEvent(_event,6/*callLiftToFloor*/)) && ((serviceList .contains (floor )))){
+		else if ((_occurredEvent(_event,18/*callLiftToFloor*/)) && ((serviceList .contains (floor )))){
 		_cls_LiftSystem0.pw .println ("multiple press of the same button registered");
 
-		_state_id_LiftControllerProperties = 3;//moving to state error
+		_state_id_LiftControllerProperties = 8;//moving to state error
 		_goto_LiftControllerProperties(_info);
 		}
 }
@@ -180,8 +180,8 @@ _cls_LiftSystem0.pw.flush();
 
 public String _string_LiftControllerProperties(int _state_id, int _mode){
 switch(_state_id){
-case 5: if (_mode == 0) return "valid"; else return "valid";
-case 3: if (_mode == 0) return "error"; else return "!!!SYSTEM REACHED BAD STATE!!! error "+new _BadStateExceptionLiftSystem().toString()+" ";
+case 10: if (_mode == 0) return "valid"; else return "valid";
+case 8: if (_mode == 0) return "error"; else return "!!!SYSTEM REACHED BAD STATE!!! error "+new _BadStateExceptionLiftSystem().toString()+" ";
 default: return "!!!SYSTEM REACHED AN UNKNOWN STATE!!!";
 }
 }
