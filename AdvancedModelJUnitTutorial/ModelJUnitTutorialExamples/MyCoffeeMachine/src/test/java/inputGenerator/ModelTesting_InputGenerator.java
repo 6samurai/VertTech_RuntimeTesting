@@ -39,7 +39,7 @@ import inputGeneratorStates.ModelTesting_InputGeneratorStates;
 public class ModelTesting_InputGenerator implements TimedFsmModel{ 
 
 	private static final int PROBABILITY_TOTAL = 100;
-	private static final int PROBABILITY_BUTTON_PRESS = 10;
+	private static final int PROBABILITY_BUTTON_PRESS = 40;
     private ModelTesting_InputGeneratorStates modelState = ModelTesting_InputGeneratorStates.VALID;
     private	int numFloors = 0;
     private int numLifts = 0;
@@ -48,9 +48,11 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
     private Lift[] lifts;
     //private ArrayList<ServiceList> serviceList;
     private ArrayList<Integer> serviceList;
+    private ArrayList<Integer> openLifts;
     private boolean check = false;
     private String errorMsg = "";
-    
+    private boolean firstIter = true;
+    private int index = 0;
 	@Time
     public int now;
 	
@@ -69,14 +71,19 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
     	 modelState = ModelTesting_InputGeneratorStates.VALID;
         
          if (reset) {
+        	 boolean firstIter = true;
              //assuming range of floors is between 0 and random max number
         	 numFloors = random.nextInt(10) + 2;
              numLifts = random.nextInt(10) + 2;
+             
+             numFloors =5;
+             numLifts =5;
              sut = new LiftController(numFloors, numLifts, false);
 
              lifts = sut.getLifts();
 
              serviceList = new ArrayList<Integer>();
+             openLifts = new ArrayList<Integer>();
              now = 0;   
              check = false;    
              errorMsg = "";
@@ -87,13 +94,14 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
 
     public boolean buttonPressGuard() {
  //       System.out.println("lift call guard");
-        return  random.nextInt(PROBABILITY_TOTAL) < PROBABILITY_BUTTON_PRESS ;
+        return  random.nextInt(PROBABILITY_TOTAL) < PROBABILITY_BUTTON_PRESS  || firstIter;
     }
 
     //idle to servicing states through callLiftToFloor
     public @Action
     void buttonPress() {
 
+    	 firstIter = false;
         int counter = 0;
 
         modelState = ModelTesting_InputGeneratorStates.VALID;
@@ -172,12 +180,33 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
                 
                 
             	if(lifts[i].isOpen() && !lifts[i].isMoving() && serviceList.contains(lifts[i].getFloor())){
-            		serviceList.remove(lifts[i].getFloor());
+            		openLifts.add(i);
+            	}
+            	
+            	if(!lifts[i].isOpen() && !lifts[i].isMoving() && openLifts.contains(i)){
+            		for(int j=0; j<serviceList.size(); j++) {
+            		    if (serviceList.get(j).equals(i)) {
+            		    	serviceList.remove(j);
+            		    	break;
+            		    }
+            		}
+            		for(int j=0; j<openLifts.size(); j++) {
+            		    if (openLifts.get(j).equals(i)) {
+            		    	openLifts.remove(j);
+            		    	break;
+            		    }
+            		}
+            		
             	}
    	
             }
     
         Assert.assertEquals(errorMsg, false, check);
+        
+        try {
+            Thread.sleep(50);
+        } catch (Exception e) {
+    }
     }
     
     
@@ -205,7 +234,7 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
         tester.addCoverageMetric(new TransitionCoverage());
         tester.addCoverageMetric(new StateCoverage());
         tester.addCoverageMetric(new ActionCoverage());
-        tester.generate(500);
+        tester.generate(2500);
         tester.printCoverage();
     }
     
