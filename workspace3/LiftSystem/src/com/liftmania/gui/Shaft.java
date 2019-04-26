@@ -155,15 +155,15 @@ public class Shaft extends JPanel implements Runnable {
 	public void animateMovement(int toFloor){
 		int newFloor = 0;
 		//Update lift state
-	
+		lift.setMoving(true);
 		int fromFloor = lift.getFloor();
 		setLiftFloor(fromFloor);
-		
+	
 		if (toFloor > fromFloor) {
 
 			for (int i = fromFloor; i < toFloor; i++) {
 				serviceOtherRequest(lift);
-				lift.setMoving(true);
+			
 				animateUp(i);			
 				newFloor = i + 1;
 				lift.setFloor(newFloor);
@@ -173,7 +173,7 @@ public class Shaft extends JPanel implements Runnable {
 		} else {
 			for (int i = fromFloor; i > toFloor; i--) {
 				serviceOtherRequest(lift);
-				lift.setMoving(true);
+		
 				animateDown(i);
 				newFloor = i - 1;
 				lift.setFloor(newFloor);
@@ -181,22 +181,21 @@ public class Shaft extends JPanel implements Runnable {
 			}
 
 		}
+		
+	lift.setFloor(toFloor);
+		
+		//Open and close doors
+		openDoors(toFloor);
+		try {
+			Thread.sleep(3000);
+		} catch (Exception e) {}
+		closeDoors(toFloor);
+		
+		//Update lift state
+		lift.setMoving(false);
 
 		//lift.setFloor(toFloor);
 	}
-	public void animateLift(int toFloor) {
-
-		animateMovement(toFloor);
-		//Open and close doors
-		openDoors(toFloor);
-		closeDoors(toFloor);
-
-		//Update lift state
-
-
-
-	}
-
 	public void animateUp(int currentFloor) {
 
 		int lower = currentFloor * animationStepsPerFloor;
@@ -222,7 +221,8 @@ public class Shaft extends JPanel implements Runnable {
 		
 		for (int i = 0; i < animationStepsPerFloor; i++) {
 			animationPause();
-			lift.setBetweenFloors(false);
+			lift.setBetweenFloors(true);
+		//	lift.setBetweenFloors(false);
 			lower--;
 			upper--;
 
@@ -258,10 +258,11 @@ public class Shaft extends JPanel implements Runnable {
 	 *            - The lift number (zero-based)
 	 */
 	public void openDoors(int floor) {
+		lift.setMoving(false);
 		liftColor = COLOR_DOORS_OPEN;
 		setLiftFloor(lift.getFloor());
-		visualiser.controller.openLiftDoor(lift.getId(),floor);
-		lift.setMoving(false);
+	//	visualiser.controller.openLiftDoor(lift.getId(),floor);
+	
 		try {
 			Thread.sleep(3000);
 		} catch (Exception e) {}
@@ -275,10 +276,11 @@ public class Shaft extends JPanel implements Runnable {
 	 *            - The lift number (zero-based)
 	 */
 	public void closeDoors(int floor) {
+		lift.setMoving(false);
 		liftColor = COLOR_DOORS_CLOSED;
 		setLiftFloor(lift.getFloor());
-		visualiser.controller.closeLiftDoor(lift.getId(), floor);
-		lift.setMoving(false);
+	//	visualiser.controller.closeLiftDoor(lift.getId(), floor);
+	
 		try {
 			Thread.sleep(500);
 		} catch (Exception e) {}

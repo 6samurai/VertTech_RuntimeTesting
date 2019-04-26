@@ -4,10 +4,10 @@ node [shape = circle]; valid valid;
 node [shape = octagon]; error;
 node [shape = point]; _s_s;
 _s_s -> valid;
-valid -> valid [ label = "(1) callLiftToFloor\\serviceList . isEmpty ( ) \\firstIter = false ; System . out . println ( \" Button Call. floor: \" + floor ) ; serviceList . add ( floor ) ; "];
-valid -> error [ label = "(2) animateDown\\missedOpenDown || missedOpen \\System . out . println ( \" Missed moving down floor error \" ) ; "];
-valid -> valid [ label = "(3) animateDown\\! missedOpenDown && ! firstIter \\System . out . println ( \" current floor: \" + floor ) ; if ( ! serviceList . isEmpty ( ) ) { for ( int i = 0 ; i < serviceList . size ( ) ; i ++ ) { if ( currentFloorDown - 1 == serviceList . get ( i ) ) { missedOpenDown = true ; } } } "];
-valid -> error [ label = "(4) animateUp\\missedOpenUp || missedOpen \\System . out . println ( \" Missed moving up floor error \" ) ; "];
-valid -> valid [ label = "(5) animateUp\\! missedOpenUp && ! firstIter \\System . out . println ( \" current floor: \" + floor ) ; if ( ! serviceList . isEmpty ( ) ) { for ( int i = 0 ; i < serviceList . size ( ) ; i ++ ) { if ( currentFloorUp + 1 == serviceList . get ( i ) ) { missedOpenUp = true ; } } } "];
-valid -> error [ label = "(6) callLiftToFloor\\( serviceList . contains ( floor ) ) \\System . out . println ( \" multiple press of the same button registered \" ) ; "];
+valid -> valid [ label = "(1) callLiftToFloor\\serviceList . isEmpty ( ) || ! serviceList . contains ( floor ) \\firstIter = false ; System . out . println ( \" Button Call. floor: \" + floor ) ; serviceList . add ( floor ) ; "];
+valid -> valid [ label = "(2) moveLift\\serviceList . isEmpty ( ) || ! serviceList . contains ( floor ) \\firstIter = false ; System . out . println ( \" Move lift call \" + floor ) ; serviceList . add ( floor ) ; "];
+valid -> valid [ label = "(3) animateDown\\! missedOpenDown && ! firstIter \\if ( ! serviceList . isEmpty ( ) ) { for ( int i = 0 ; i < serviceList . size ( ) ; i ++ ) { if ( currentFloorDown == serviceList . get ( i ) ) { missedOpenDown = true ; } } } "];
+valid -> error [ label = "(4) animateDown\\missedOpenUp || missedOpenDown || missedOpen || serviceList . isEmpty ( ) \\System . out . println ( \" Missed floor servicing - lift moving down \" ) ; "];
+valid -> valid [ label = "(5) animateUp\\! missedOpenUp && ! firstIter \\System . out . println ( \" currentFloorUp \" + currentFloorUp ) ; if ( ! serviceList . isEmpty ( ) ) { for ( int i = 0 ; i < serviceList . size ( ) ; i ++ ) { if ( currentFloorUp == serviceList . get ( i ) ) { missedOpenUp = true ; } } } "];
+valid -> error [ label = "(6) animateUp\\missedOpenUp || missedOpenDown || missedOpen || serviceList . isEmpty ( ) \\System . out . println ( \" Missed floor servicing - lift moving up \" ) ; "];
 }

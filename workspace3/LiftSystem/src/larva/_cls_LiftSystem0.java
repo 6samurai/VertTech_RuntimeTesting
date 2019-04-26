@@ -31,16 +31,7 @@ _cls_LiftSystem0_instances.put(root, root);
 }
 
 _cls_LiftSystem0 parent; //to remain null - this class does not have a parent!
-public static Lift liftNumber;
-public static int DestLift;
-public static int floorNumber;
-public static int floor;
-public static int currentFloorDown;
-public static int currentFloorUp;
-public static int Lift;
-int no_automata = 1;
- public int maxFloor =6 ;
- public int minFloor =0 ;
+int no_automata = 0;
  public List <Integer >serviceList =new ArrayList <Integer >();
  public List <Integer >openDoorCount =new ArrayList <Integer >();
  public List <Integer >closeDoorCount =new ArrayList <Integer >();
@@ -79,7 +70,6 @@ return 0;
 
 public void _call(String _info, int... _event){
 synchronized(_cls_LiftSystem0_instances){
-_performLogic_LiftControllerProperties(_info, _event);
 }
 }
 
@@ -116,75 +106,6 @@ else if (no_automata < 0)
 }catch(Exception ex){ex.printStackTrace();}
 }
 
-int _state_id_LiftControllerProperties = 10;
-
-public void _performLogic_LiftControllerProperties(String _info, int... _event) {
-
-_cls_LiftSystem0.pw.println("[LiftControllerProperties]AUTOMATON::> LiftControllerProperties("+") STATE::>"+ _string_LiftControllerProperties(_state_id_LiftControllerProperties, 0));
-_cls_LiftSystem0.pw.flush();
-
-if (0==1){}
-else if (_state_id_LiftControllerProperties==10){
-		if (1==0){}
-		else if ((_occurredEvent(_event,18/*callLiftToFloor*/)) && (serviceList .isEmpty ())){
-		firstIter =false ;
-_cls_LiftSystem0.pw .println ("Button Call. floor:"+floor );
-serviceList .add (floor );
-
-		_state_id_LiftControllerProperties = 10;//moving to state valid
-		_goto_LiftControllerProperties(_info);
-		}
-		else if ((_occurredEvent(_event,28/*animateDown*/)) && (missedOpenDown ||missedOpen )){
-		_cls_LiftSystem0.pw .println ("Missed moving down floor error");
-
-		_state_id_LiftControllerProperties = 8;//moving to state error
-		_goto_LiftControllerProperties(_info);
-		}
-		else if ((_occurredEvent(_event,28/*animateDown*/)) && (!missedOpenDown &&!firstIter )){
-		_cls_LiftSystem0.pw .println ("current floor:"+floor );
-if (!serviceList .isEmpty ()){for (int i =0 ;
-i <serviceList .size ();
-i ++){if (currentFloorDown -1 ==serviceList .get (i )){missedOpenDown =true ;
-}}}
-		_state_id_LiftControllerProperties = 10;//moving to state valid
-		_goto_LiftControllerProperties(_info);
-		}
-		else if ((_occurredEvent(_event,26/*animateUp*/)) && (missedOpenUp ||missedOpen )){
-		_cls_LiftSystem0.pw .println ("Missed moving up floor error");
-
-		_state_id_LiftControllerProperties = 8;//moving to state error
-		_goto_LiftControllerProperties(_info);
-		}
-		else if ((_occurredEvent(_event,26/*animateUp*/)) && (!missedOpenUp &&!firstIter )){
-		_cls_LiftSystem0.pw .println ("current floor:"+floor );
-if (!serviceList .isEmpty ()){for (int i =0 ;
-i <serviceList .size ();
-i ++){if (currentFloorUp +1 ==serviceList .get (i )){missedOpenUp =true ;
-}}}
-		_state_id_LiftControllerProperties = 10;//moving to state valid
-		_goto_LiftControllerProperties(_info);
-		}
-		else if ((_occurredEvent(_event,18/*callLiftToFloor*/)) && ((serviceList .contains (floor )))){
-		_cls_LiftSystem0.pw .println ("multiple press of the same button registered");
-
-		_state_id_LiftControllerProperties = 8;//moving to state error
-		_goto_LiftControllerProperties(_info);
-		}
-}
-}
-
-public void _goto_LiftControllerProperties(String _info){
-_cls_LiftSystem0.pw.println("[LiftControllerProperties]MOVED ON METHODCALL: "+ _info +" TO STATE::> " + _string_LiftControllerProperties(_state_id_LiftControllerProperties, 1));
-_cls_LiftSystem0.pw.flush();
-}
-
-public String _string_LiftControllerProperties(int _state_id, int _mode){
-switch(_state_id){
-case 10: if (_mode == 0) return "valid"; else return "valid";
-case 8: if (_mode == 0) return "error"; else return "!!!SYSTEM REACHED BAD STATE!!! error "+new _BadStateExceptionLiftSystem().toString()+" ";
-default: return "!!!SYSTEM REACHED AN UNKNOWN STATE!!!";
-}
-}
 
 public boolean _occurredEvent(int[] _events, int event){
 for (int i:_events) if (i == event) return true;

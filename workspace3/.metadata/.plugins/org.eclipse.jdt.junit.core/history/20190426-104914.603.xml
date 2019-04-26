@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Rerun inputGenerator.ModelTesting_InputGenerator.LiftSystemModelRunner" project="VertTech_RuntimeTesting" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="LiftSystemModelRunner" classname="inputGenerator.ModelTesting_InputGenerator" time="103.987"/>
+</testrun>

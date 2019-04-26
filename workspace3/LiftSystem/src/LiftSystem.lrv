@@ -11,8 +11,8 @@ import java.util.List;
 GLOBAL {
 		VARIABLES {		
 
-		int maxFloor = 6;
-		int minFloor = 0;
+		%%int maxFloor = 5;
+		%%int minFloor = 0;
 		List<Integer> serviceList = new ArrayList<Integer>();
 		List<Integer> openDoorCount = new ArrayList<Integer>();
 		List<Integer> closeDoorCount = new ArrayList<Integer>();
@@ -22,67 +22,69 @@ GLOBAL {
 		boolean firstIter = true;
 		boolean missedOpenDown = false;
 		boolean missedOpen = false;
-	%%	boolean validOpen = true;
-	%%	boolean validClose = true;
-	%%	boolean callLift = false;
+
 		
 	}
-		
-	EVENTS{
-		callLiftToFloor(int floor) = {*.callLiftToFloor(floor)}
-  		moveLift(Lift liftNumber, int floorNumber) = {*.moveLift(liftNumber,floorNumber)}
-  		openLiftDoor(int DestLift) = {*.openLiftDoor(DestLift)}
-		closeLiftDoor(int Lift) = {*.closeLiftDoor(Lift)}
-		animateUp(int currentFloorUp) =  {*.animateUp(currentFloorUp)}
-		animateDown(int currentFloorDown) =  {*.animateDown(currentFloorDown)}
- 		%%test
-	}
-	
-	PROPERTY LiftControllerProperties{
-		STATES{
-			BAD{
-				error				
-			}
-			NORMAL{
-				valid
-			}
-			STARTING{
-				valid
-			}
-		}
-		
-		TRANSITIONS{				
-			valid -> valid[callLiftToFloor\ serviceList.isEmpty() \firstIter = false;System.out.println("Button Call. floor:"+ floor );serviceList.add(floor);]
-			valid -> error[animateDown \missedOpenDown || missedOpen\System.out.println("Missed moving down floor error" );]
-			valid -> valid[animateDown \!missedOpenDown && !firstIter \ System.out.println("current floor:"+ floor );
-				if(!serviceList.isEmpty()){
-					for(int i =0;i<serviceList.size();i++){
-						if(currentFloorDown-1==serviceList.get(i)){
-							missedOpenDown = true;
-						}		
-					}
-				} 	
-			]
-			valid -> error[animateUp \missedOpenUp || missedOpen\System.out.println("Missed moving up floor error" );]
-			valid -> valid[animateUp \!missedOpenUp && !firstIter\ System.out.println("current floor:"+ floor );
-				if(!serviceList.isEmpty()){
-					for(int i =0;i<serviceList.size();i++){
-						if(currentFloorUp+1==serviceList.get(i)){
-							missedOpenUp = true;
-						}		
-					}
-				} 	
-			]			
-			valid -> error[callLiftToFloor\(serviceList.contains(floor))\System.out.println("multiple press of the same button registered" );]		
-		}
-	}
+%%		
+%%	EVENTS{
+%%		callLiftToFloor(int floor) = {*.callLiftToFloor(floor)}
+%%  		moveLift(Lift liftNumber, int floorNumber) = {*.moveLift(liftNumber,floorNumber)}
+%%  	%%	openLiftDoor(int DestLift) = {*.openLiftDoor(DestLift)}
+%%	%%	closeLiftDoor(int Lift) = {*.closeLiftDoor(Lift)}
+%%		animateUp(int currentFloorUp) =  {*.animateUp(currentFloorUp)}
+%%		animateDown(int currentFloorDown) =  {*.animateDown(currentFloorDown)}
+%% 		
+%%	}
+%%	
+%%	PROPERTY LiftControllerProperties{
+%%		STATES{
+%%			BAD{
+%%				error				
+%%			}
+%%			NORMAL{
+%%				valid
+%%			}
+%%			STARTING{
+%%				valid
+%%			}
+%%		}
+%%		
+%%		TRANSITIONS{				
+%%		valid -> valid[callLiftToFloor\ serviceList.isEmpty() || !serviceList.contains(floor)  \firstIter = false;System.out.println("Button Call. floor:"+ floor );serviceList.add(floor);]
+%%		valid -> valid[moveLift\ serviceList.isEmpty() || !serviceList.contains(floor)  \firstIter = false;System.out.println("Move lift call"+ floor );serviceList.add(floor);]
+%%
+%%		valid -> valid[animateDown \!missedOpenDown && !firstIter \
+%%				if(!serviceList.isEmpty()){
+%%					for(int i =0;i<serviceList.size();i++){
+%%						if(currentFloorDown==serviceList.get(i)){
+%%							missedOpenDown = true;
+%%						}		
+%%					}
+%%				} 	
+%%			]
+%%		valid -> error[animateDown \missedOpenUp ||missedOpenDown || missedOpen || serviceList.isEmpty()\System.out.println("Missed floor servicing - lift moving down");]
+%%		
+%%		valid -> valid[animateUp \!missedOpenUp && !firstIter\ System.out.println("currentFloorUp" + currentFloorUp);
+%%				if(!serviceList.isEmpty()){
+%%					for(int i =0;i<serviceList.size();i++){
+%%						if(currentFloorUp==serviceList.get(i)){
+%%							missedOpenUp = true;
+%%							
+%%						}		
+%%					}
+%%				} 	
+%%			]
+%%		valid -> error[animateUp \missedOpenUp ||missedOpenDown || missedOpen || serviceList.isEmpty()\System.out.println("Missed floor servicing - lift moving up");]
+%%					
+%%		}
+%%	}
 
 
 	FOREACH (Lift lift)
     {
 		VARIABLES {
 			int id;
-			int floor;
+			int curFloor;
 			boolean liftIsMoving= false;	
 			boolean doorIsOpen = false;
 			int openLiftCount = 0;
@@ -92,9 +94,10 @@ GLOBAL {
 		}
 		
 		EVENTS{
-			setMoving(boolean moveLift) = 	{Lift l.setMoving(moveLift)}	where{lift = l;}
-			closeDoors() 				= 	{Lift l.closeDoors()}			where{lift = l;}
-			openDoors() 				= 	{Lift l.openDoors()}			where{lift = l;}
+			setMoving(boolean moveLift) 			= 	{Lift l.setMoving(moveLift)}	where{lift = l;}
+			closeDoors() 							= 	{Lift l.closeDoors()}			where{lift = l;}
+			openDoors() 							= 	{Lift l.openDoors()}			where{lift = l;}
+			setBetweenFloors(boolean betweenFloors) = 	{Lift l.setBetweenFloors(betweenFloors) }	where{lift = l;}
 		}
 		
 		PROPERTY LiftProperties{
@@ -103,46 +106,44 @@ GLOBAL {
 					errorState
 				}
 				NORMAL{
-					doorOpen { floor = lift.getFloor();System.out.println("open door floor: "+floor);}
-				%%	idle { id = lift.getId();System.out.println("Lift Id: "+id);}
-					moveLift{ floor = lift.getFloor();System.out.println("move floor: "+floor);}
-					doorClosed { floor = lift.getFloor();System.out.println("close floor: "+floor);}
+					doorOpen { curFloor = lift.getFloor();System.out.println("open door floor: "+curFloor);}
+	
+					moveLift{ curFloor = lift.getFloor();}
+					doorClosed { curFloor = lift.getFloor();System.out.println("close floor: "+curFloor);}
 				}
 				STARTING{
-					doorClosed {id = lift.getId(); floor = lift.getFloor();System.out.println("floor: "+floor + " id:" +id + "liftIsMoving " + liftIsMoving + " doorIsOpen"+doorIsOpen); }
-					
-				%%	idle {id = lift.getId(); floor = lift.getFloor();System.out.println("floor: "+floor + " id:" +id + "liftIsMoving " + liftIsMoving + " doorIsOpen"+doorIsOpen); }
+					doorClosed {id = lift.getId(); curFloor = lift.getFloor();System.out.println("floor: "+curFloor); }
 				}
 			}
 			
 			TRANSITIONS{
+				doorOpen ->errorState[closeDoors\ closeDoorClock.compareTo(3)<0 \System.out.println("Door closed before specified delay " + closeDoorClock.current()); ]
+				doorOpen -> errorState[setMoving(liftIsMoving)\doorIsOpen\System.out.println("Move call received when door is open");]
+				doorClosed -> errorState[setMoving(liftIsMoving)\moveLiftClock.compareTo(3) > 0\System.out.println("Lift moved after more than 3 seconds error" );]
+			%%	doorOpen -> errorState[closeDoors\curFloor<minFloor || curFloor>maxFloor\System.out.println("Lift moved beyond specified limit");]
+			%%	moveLift ->errorState[setMoving()\serviceList.isEmpty()\System.out.println("Lift is moving when no service is present");]
+				moveLift ->errorState[openDoors()\missedOpenUp ||missedOpenDown || missedOpen \System.out.println("Lift skipped a service floor request" + missedOpenUp +missedOpenDown + missedOpen);]
+				doorOpen -> errorState[openDoors()\openLiftCount%2 ==0\System.out.println("open and close door not alternating - open"); ]
+				doorClosed -> errorState[closeDoors()\openLiftCount%2 ==1\System.out.println("open and close door not alternating - close"); ]
+				doorClosed -> errorState[setBetweenFloors(betweenFloors)\betweenFloors\System.out.println("lift stopped in between floors - door closed"); ]
+				doorOpen -> errorState[setBetweenFloors(betweenFloors)\betweenFloors\System.out.println("lift stopped in between floors - door open"); ]
+				
+				
 				doorClosed -> moveLift[setMoving(liftIsMoving)\!doorIsOpen && !liftIsMoving  \liftIsMoving=true;System.out.println("Lift is moving");]
 				doorClosed -> doorOpen[openDoors\!doorIsOpen && !liftIsMoving && openLiftCount%2 ==0  \ openLiftCount++; doorIsOpen=true;closeDoorClock.reset() ;System.out.println("Door is open");]
 				
-				%%idle -> moveLift[setMoving(liftIsMoving)\!doorIsOpen && !liftIsMoving  \liftIsMoving=true;System.out.println("Lift is moving");]
-				%%idle -> doorOpen[openDoors\!doorIsOpen && !liftIsMoving && openLiftCount%2 ==0  \ openLiftCount++; doorIsOpen=true;closeDoorClock.reset() ;System.out.println("Door is open");]
 				moveLift -> doorOpen[openDoors\!doorIsOpen && liftIsMoving && openLiftCount%2 ==0 \
-					openLiftCount++; doorIsOpen = true;liftIsMoving=false;closeDoorClock.reset();System.out.println("Destination reached from moving +"+floor );
+					openLiftCount++; doorIsOpen = true;liftIsMoving=false;closeDoorClock.reset(); curFloor = lift.getFloor();System.out.println("Destination reached from moving +"+curFloor );		
 					if(!serviceList.isEmpty())
-					serviceList.remove(Integer.valueOf(floor));
+					serviceList.remove(Integer.valueOf(curFloor));
 					else if(!firstIter)
-					missedOpen = true;
+					missedOpen = true;	
 					
 				]		
 				moveLift -> moveLift[setMoving(liftIsMoving)\!doorIsOpen && liftIsMoving \System.out.println("Lift moving to next floor : " + liftIsMoving );]
 				doorOpen ->doorClosed[closeDoors\doorIsOpen && !liftIsMoving && closeDoorClock.compareTo(3)>=0 && openLiftCount%2 ==1 \openLiftCount--;moveLiftClock.reset();doorIsOpen=false;System.out.println("Door is closed due to timer");]
 				doorClosed -> doorClosed[setMoving()\ \System.out.println("Door is closed and idle");]
-				
-		%%		doorOpen ->errorState[closeDoors\ doorIsOpen && !liftIsMoving && closeDoorClock.compareTo(3)<0\;System.out.println("Door closed too early");]			
-				doorOpen -> errorState[setMoving(liftIsMoving)\liftIsMoving\System.out.println("Move call received when door is open 2" + liftIsMoving );]
-		%%		doorOpen -> errorState[openDoors()\\System.out.println("Multiple open door actions registered error" );]
-				doorClosed -> errorState[closeDoors()\moveLiftClock.compareTo(3) > 0\System.out.println("Lift moved after more than 3 seconds error" );]
-		%%		doorClosed -> errorState[setMoving(moving)\\System.out.println("Multiple close door actions registered error" );]			
-		%%		doorClosed -> errorState[closeDoors()\\System.out.println("Close doors called after move error" );]
-				doorOpen -> errorState[openDoors()\floor<minFloor || floor>maxFloor\System.out.println("Lift moved beyond specified limit");]
-				moveLift ->errorState[setMoving()\serviceList.isEmpty()\System.out.println("Lift is moving when no service is present");]
-				doorOpen -> errorState[openDoors()\openLiftCount%2 ==0\System.out.println("open and close door not alternating - open"); ]
-				doorClosed -> errorState[closeDoors()\openLiftCount%2 ==1\System.out.println("open and close door not alternating - close"); ]
+						
 			}	
 		}			
 	}

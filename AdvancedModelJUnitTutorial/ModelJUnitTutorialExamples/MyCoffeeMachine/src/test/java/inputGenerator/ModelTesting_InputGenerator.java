@@ -39,7 +39,7 @@ import inputGeneratorStates.ModelTesting_InputGeneratorStates;
 public class ModelTesting_InputGenerator implements TimedFsmModel{ 
 
 	private static final int PROBABILITY_TOTAL = 100;
-	private static final int PROBABILITY_BUTTON_PRESS = 40;
+	private static final int PROBABILITY_BUTTON_PRESS = 10;
     private ModelTesting_InputGeneratorStates modelState = ModelTesting_InputGeneratorStates.VALID;
     private	int numFloors = 0;
     private int numLifts = 0;
@@ -49,10 +49,12 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
     //private ArrayList<ServiceList> serviceList;
     private ArrayList<Integer> serviceList;
     private ArrayList<Integer> openLifts;
+    ArrayList<ArrayList<Integer>> moveList = new ArrayList<ArrayList<Integer>>(); 
     private boolean check = false;
     private String errorMsg = "";
     private boolean firstIter = true;
     private int index = 0;
+     
 	@Time
     public int now;
 	
@@ -73,8 +75,8 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
          if (reset) {
         	 boolean firstIter = true;
              //assuming range of floors is between 0 and random max number
-        	 numFloors = random.nextInt(10) + 2;
-             numLifts = random.nextInt(10) + 2;
+        	// numFloors = random.nextInt(10) + 2;
+            // numLifts = random.nextInt(10) + 2;
              
              numFloors =5;
              numLifts =5;
@@ -87,6 +89,8 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
              now = 0;   
              check = false;    
              errorMsg = "";
+             for(int i =0; i<numLifts;i++)
+            	 moveList.add(new ArrayList<Integer>());
          }
     }
 	
@@ -107,21 +111,36 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
         modelState = ModelTesting_InputGeneratorStates.VALID;
         int randomFloorCall = random.nextInt(numFloors);
         
-  
-        if(serviceList.size()==0){
-        	serviceList.add(randomFloorCall);
+        int randomBehaviour = random.nextInt(2);
+        if(randomBehaviour==0){
+            if(serviceList.size()==0){
+            	serviceList.add(randomFloorCall);
+            }else{
+            	if(!(serviceList.contains(randomFloorCall))){
+            		serviceList.add(randomFloorCall);
+            	}     	
+            }
+          
+            	sut.inputAction(false, 0,randomFloorCall);
+        	
         }else{
-        	if(!(serviceList.contains(randomFloorCall))){
-        		serviceList.add(randomFloorCall);
-        	}     	
+        	int randomLiftNumber = random.nextInt(numLifts);
+        
+         //	sut.moveLift(randomLiftNumber, randomFloorCall);
+        	
+        	  if(moveList.get(randomLiftNumber).size()==0){
+        		  moveList.get(randomLiftNumber).add(randomFloorCall);
+              }else{
+              	if(!(moveList.get(randomLiftNumber).contains(randomFloorCall))){
+              	  moveList.get(randomLiftNumber).add(randomFloorCall);
+              	}     	
+              }
+        		sut.inputAction(true, randomLiftNumber,randomFloorCall);
         }
-
-        sut.callLiftToFloor(randomFloorCall);
 
     }
     
     public boolean verifyBehaviourGuard() {
-
         return getState().equals(ModelTesting_InputGeneratorStates.VALID);
     }
 
@@ -136,39 +155,35 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
         	  errorMsg = "";
             for (int i = 0; i < lifts.length; i++) {
             	
-
             	if ((lifts[i].isOpen()) &&(lifts[i].isMoving())) {
            		 check = true;
            		errorMsg = "Lift is open and moving";
-                    break; 
-           		  
+                    break; 	  
             	}
             	
             	if (!(lifts[i].isMoving()) &&(lifts[i].getBetweenFloors())) {
            		 check = true;
            		 errorMsg = "Lift is stationary and between floors";
-                    break; 
-           		  
+                    break; 	  
             	}
             	
             	if ((lifts[i].isOpen()) &&(lifts[i].getBetweenFloors())) {
             		 check = true;
             		 errorMsg = "Lift is open and between floors";
-                     break; 
-            		  
+                     break;         		  
             	}
                 //if all lifts are closed and stationary with items still required to be serviced - lift is invalid behaviour
                 if (lifts[i].isOpen() && serviceList.size() == 0) {
                     check = true;
                     errorMsg = "Lift is open when no tasks are present";
-                    break;
+                //    break;
                 }
                 
                 //if all lifts are closed and stationary with items still required to be serviced - lift is invalid behaviour
                 if (lifts[i].isMoving() && serviceList.size() == 0) {
                     check = true;
                     errorMsg = "Lift is moving when no tasks are present";
-                    break;
+                   // break;
                 }
 
 
@@ -177,8 +192,7 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
                     errorMsg = "Lift  has moved beyond specified limits";
                     break;
                 }
-                
-                
+                              
             	if(lifts[i].isOpen() && !lifts[i].isMoving() && serviceList.contains(lifts[i].getFloor())){
             		openLifts.add(i);
             	}
@@ -195,12 +209,30 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
             		    	openLifts.remove(j);
             		    	break;
             		    }
-            		}
-            		
+            		}      		
             	}
-   	
+            	
+            	
+                if(errorMsg.length()>0){
+                	
+                	if((errorMsg.equals("Lift is open when no tasks are present") 
+                			|| errorMsg.equals("Lift is moving when no tasks are present"))
+                			&& !(moveList.get(i).size()==0)){
+                		errorMsg = "";
+                		
+                	}
+
+                	if(!lifts[i].isOpen() && !lifts[i].isMoving() && moveList.get(i).contains(lifts[i].getFloor())){
+                		for(int j=0; j<serviceList.size(); j++) {
+                		    if ( moveList.get(i).get(j).equals(i)) {
+                		    	 moveList.get(i).remove(j);
+                		    	break;
+                		    }
+                		}	
+                	}  	
+                }	
             }
-    
+            //will check which lifts were given a move Lift control
         Assert.assertEquals(errorMsg, false, check);
         
         try {
@@ -225,7 +257,7 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
 
         final GreedyTester tester = new GreedyTester(timedModel);
         tester.setRandom(new Random(100));
-        tester.setResetProbability(0.001);
+        tester.setResetProbability(0.0000001);
         final GraphListener graphListener = tester.buildGraph();
         //    graphListener.printGraphDot("/users/Owner/Desktop/output.dot");
         tester.addListener(new StopOnFailureListener());
@@ -234,7 +266,7 @@ public class ModelTesting_InputGenerator implements TimedFsmModel{
         tester.addCoverageMetric(new TransitionCoverage());
         tester.addCoverageMetric(new StateCoverage());
         tester.addCoverageMetric(new ActionCoverage());
-        tester.generate(2500);
+        tester.generate(1000);
         tester.printCoverage();
     }
     

@@ -19,10 +19,11 @@ public static LinkedHashMap<_cls_LiftSystem1,_cls_LiftSystem1> _cls_LiftSystem1_
 _cls_LiftSystem0 parent;
 public static Lift l;
 public static boolean moveLift;
+public static boolean betweenFloors;
 public Lift lift;
 int no_automata = 1;
  public int id ;
- public int floor ;
+ public int curFloor ;
  public boolean liftIsMoving =false ;
  public boolean doorIsOpen =false ;
  public int openLiftCount =0 ;
@@ -41,8 +42,8 @@ this.lift = lift;
 public void initialisation() {
 
 id =lift .getId ();
-parent.floor =lift .getFloor ();
-_cls_LiftSystem0.pw .println ("floor: "+parent.floor +" id:"+id +"liftIsMoving "+liftIsMoving +" doorIsOpen"+doorIsOpen );
+curFloor =lift .getFloor ();
+_cls_LiftSystem0.pw .println ("floor: "+curFloor );
 
    closeDoorClock.reset();
    moveLiftClock.reset();
@@ -115,7 +116,7 @@ else if (no_automata < 0)
 }catch(Exception ex){ex.printStackTrace();}
 }
 
-int _state_id_LiftProperties = 15;
+int _state_id_LiftProperties = 33;
 
 public void _performLogic_LiftProperties(String _info, int... _event) {
 
@@ -123,117 +124,128 @@ _cls_LiftSystem0.pw.println("[LiftProperties]AUTOMATON::> LiftProperties("+lift 
 _cls_LiftSystem0.pw.flush();
 
 if (0==1){}
-else if (_state_id_LiftProperties==15){
+else if (_state_id_LiftProperties==33){
 		if (1==0){}
-		else if ((_occurredEvent(_event,30/*setMoving*/)) && (!doorIsOpen &&!liftIsMoving )){
+		else if ((_occurredEvent(_event,56/*setMoving*/)) && (moveLiftClock .compareTo (3 )>0 )){
+		_cls_LiftSystem0.pw .println ("Lift moved after more than 3 seconds error");
+
+		_state_id_LiftProperties = 29;//moving to state errorState
+		_goto_LiftProperties(_info);
+		}
+		else if ((_occurredEvent(_event,58/*closeDoors*/)) && (openLiftCount %2 ==1 )){
+		_cls_LiftSystem0.pw .println ("open and close door not alternating - close");
+
+		_state_id_LiftProperties = 29;//moving to state errorState
+		_goto_LiftProperties(_info);
+		}
+		else if ((_occurredEvent(_event,62/*setBetweenFloors*/)) && (betweenFloors )){
+		_cls_LiftSystem0.pw .println ("lift stopped in between floors - door closed");
+
+		_state_id_LiftProperties = 29;//moving to state errorState
+		_goto_LiftProperties(_info);
+		}
+		else if ((_occurredEvent(_event,56/*setMoving*/)) && (!doorIsOpen &&!liftIsMoving )){
 		liftIsMoving =true ;
 _cls_LiftSystem0.pw .println ("Lift is moving");
 
-		_state_id_LiftProperties = 13;//moving to state moveLift
-parent.floor =lift .getFloor ();
-_cls_LiftSystem0.pw .println ("move floor: "+parent.floor );
+		_state_id_LiftProperties = 31;//moving to state moveLift
+curFloor =lift .getFloor ();
 
 		_goto_LiftProperties(_info);
 		}
-		else if ((_occurredEvent(_event,34/*openDoors*/)) && (!doorIsOpen &&!liftIsMoving &&openLiftCount %2 ==0 )){
+		else if ((_occurredEvent(_event,60/*openDoors*/)) && (!doorIsOpen &&!liftIsMoving &&openLiftCount %2 ==0 )){
 		openLiftCount ++;
 doorIsOpen =true ;
 closeDoorClock .reset ();
 _cls_LiftSystem0.pw .println ("Door is open");
 
-		_state_id_LiftProperties = 12;//moving to state doorOpen
-parent.floor =lift .getFloor ();
-_cls_LiftSystem0.pw .println ("open door floor: "+parent.floor );
+		_state_id_LiftProperties = 30;//moving to state doorOpen
+curFloor =lift .getFloor ();
+_cls_LiftSystem0.pw .println ("open door floor: "+curFloor );
 
 		_goto_LiftProperties(_info);
 		}
-		else if ((_occurredEvent(_event,30/*setMoving*/))){
+		else if ((_occurredEvent(_event,56/*setMoving*/))){
 		_cls_LiftSystem0.pw .println ("Door is closed and idle");
 
-		_state_id_LiftProperties = 15;//moving to state doorClosed
+		_state_id_LiftProperties = 33;//moving to state doorClosed
 id =lift .getId ();
-parent.floor =lift .getFloor ();
-_cls_LiftSystem0.pw .println ("floor: "+parent.floor +" id:"+id +"liftIsMoving "+liftIsMoving +" doorIsOpen"+doorIsOpen );
+curFloor =lift .getFloor ();
+_cls_LiftSystem0.pw .println ("floor: "+curFloor );
 
-		_goto_LiftProperties(_info);
-		}
-		else if ((_occurredEvent(_event,32/*closeDoors*/)) && (moveLiftClock .compareTo (3 )>0 )){
-		_cls_LiftSystem0.pw .println ("Lift moved after more than 3 seconds error");
-
-		_state_id_LiftProperties = 11;//moving to state errorState
-		_goto_LiftProperties(_info);
-		}
-		else if ((_occurredEvent(_event,32/*closeDoors*/)) && (openLiftCount %2 ==1 )){
-		_cls_LiftSystem0.pw .println ("open and close door not alternating - close");
-
-		_state_id_LiftProperties = 11;//moving to state errorState
 		_goto_LiftProperties(_info);
 		}
 }
-else if (_state_id_LiftProperties==12){
+else if (_state_id_LiftProperties==30){
 		if (1==0){}
-		else if ((_occurredEvent(_event,32/*closeDoors*/)) && (doorIsOpen &&!liftIsMoving &&closeDoorClock .compareTo (3 )>=0 &&openLiftCount %2 ==1 )){
+		else if ((_occurredEvent(_event,58/*closeDoors*/)) && (closeDoorClock .compareTo (3 )<0 )){
+		_cls_LiftSystem0.pw .println ("Door closed before specified delay "+closeDoorClock .current ());
+
+		_state_id_LiftProperties = 29;//moving to state errorState
+		_goto_LiftProperties(_info);
+		}
+		else if ((_occurredEvent(_event,56/*setMoving*/)) && (doorIsOpen )){
+		_cls_LiftSystem0.pw .println ("Move call received when door is open");
+
+		_state_id_LiftProperties = 29;//moving to state errorState
+		_goto_LiftProperties(_info);
+		}
+		else if ((_occurredEvent(_event,60/*openDoors*/)) && (openLiftCount %2 ==0 )){
+		_cls_LiftSystem0.pw .println ("open and close door not alternating - open");
+
+		_state_id_LiftProperties = 29;//moving to state errorState
+		_goto_LiftProperties(_info);
+		}
+		else if ((_occurredEvent(_event,62/*setBetweenFloors*/)) && (betweenFloors )){
+		_cls_LiftSystem0.pw .println ("lift stopped in between floors - door open");
+
+		_state_id_LiftProperties = 29;//moving to state errorState
+		_goto_LiftProperties(_info);
+		}
+		else if ((_occurredEvent(_event,58/*closeDoors*/)) && (doorIsOpen &&!liftIsMoving &&closeDoorClock .compareTo (3 )>=0 &&openLiftCount %2 ==1 )){
 		openLiftCount --;
 moveLiftClock .reset ();
 doorIsOpen =false ;
 _cls_LiftSystem0.pw .println ("Door is closed due to timer");
 
-		_state_id_LiftProperties = 15;//moving to state doorClosed
+		_state_id_LiftProperties = 33;//moving to state doorClosed
 id =lift .getId ();
-parent.floor =lift .getFloor ();
-_cls_LiftSystem0.pw .println ("floor: "+parent.floor +" id:"+id +"liftIsMoving "+liftIsMoving +" doorIsOpen"+doorIsOpen );
+curFloor =lift .getFloor ();
+_cls_LiftSystem0.pw .println ("floor: "+curFloor );
 
-		_goto_LiftProperties(_info);
-		}
-		else if ((_occurredEvent(_event,30/*setMoving*/)) && (liftIsMoving )){
-		_cls_LiftSystem0.pw .println ("Move call received when door is open 2"+liftIsMoving );
-
-		_state_id_LiftProperties = 11;//moving to state errorState
-		_goto_LiftProperties(_info);
-		}
-		else if ((_occurredEvent(_event,34/*openDoors*/)) && (parent.floor <parent.minFloor ||parent.floor >parent.maxFloor )){
-		_cls_LiftSystem0.pw .println ("Lift moved beyond specified limit");
-
-		_state_id_LiftProperties = 11;//moving to state errorState
-		_goto_LiftProperties(_info);
-		}
-		else if ((_occurredEvent(_event,34/*openDoors*/)) && (openLiftCount %2 ==0 )){
-		_cls_LiftSystem0.pw .println ("open and close door not alternating - open");
-
-		_state_id_LiftProperties = 11;//moving to state errorState
 		_goto_LiftProperties(_info);
 		}
 }
-else if (_state_id_LiftProperties==13){
+else if (_state_id_LiftProperties==31){
 		if (1==0){}
-		else if ((_occurredEvent(_event,34/*openDoors*/)) && (!doorIsOpen &&liftIsMoving &&openLiftCount %2 ==0 )){
+		else if ((_occurredEvent(_event,60/*openDoors*/)) && (parent.missedOpenUp ||parent.missedOpenDown ||parent.missedOpen )){
+		_cls_LiftSystem0.pw .println ("Lift skipped a service floor request"+parent.missedOpenUp +parent.missedOpenDown +parent.missedOpen );
+
+		_state_id_LiftProperties = 29;//moving to state errorState
+		_goto_LiftProperties(_info);
+		}
+		else if ((_occurredEvent(_event,60/*openDoors*/)) && (!doorIsOpen &&liftIsMoving &&openLiftCount %2 ==0 )){
 		openLiftCount ++;
 doorIsOpen =true ;
 liftIsMoving =false ;
 closeDoorClock .reset ();
-_cls_LiftSystem0.pw .println ("Destination reached from moving +"+parent.floor );
-if (!parent.serviceList .isEmpty ())parent.serviceList .remove (Integer .valueOf (parent.floor ));
+curFloor =lift .getFloor ();
+_cls_LiftSystem0.pw .println ("Destination reached from moving +"+curFloor );
+if (!parent.serviceList .isEmpty ())parent.serviceList .remove (Integer .valueOf (curFloor ));
 else if (!parent.firstIter )parent.missedOpen =true ;
 
-		_state_id_LiftProperties = 12;//moving to state doorOpen
-parent.floor =lift .getFloor ();
-_cls_LiftSystem0.pw .println ("open door floor: "+parent.floor );
+		_state_id_LiftProperties = 30;//moving to state doorOpen
+curFloor =lift .getFloor ();
+_cls_LiftSystem0.pw .println ("open door floor: "+curFloor );
 
 		_goto_LiftProperties(_info);
 		}
-		else if ((_occurredEvent(_event,30/*setMoving*/)) && (!doorIsOpen &&liftIsMoving )){
+		else if ((_occurredEvent(_event,56/*setMoving*/)) && (!doorIsOpen &&liftIsMoving )){
 		_cls_LiftSystem0.pw .println ("Lift moving to next floor : "+liftIsMoving );
 
-		_state_id_LiftProperties = 13;//moving to state moveLift
-parent.floor =lift .getFloor ();
-_cls_LiftSystem0.pw .println ("move floor: "+parent.floor );
+		_state_id_LiftProperties = 31;//moving to state moveLift
+curFloor =lift .getFloor ();
 
-		_goto_LiftProperties(_info);
-		}
-		else if ((_occurredEvent(_event,30/*setMoving*/)) && (parent.serviceList .isEmpty ())){
-		_cls_LiftSystem0.pw .println ("Lift is moving when no service is present");
-
-		_state_id_LiftProperties = 11;//moving to state errorState
 		_goto_LiftProperties(_info);
 		}
 }
@@ -246,10 +258,10 @@ _cls_LiftSystem0.pw.flush();
 
 public String _string_LiftProperties(int _state_id, int _mode){
 switch(_state_id){
-case 11: if (_mode == 0) return "errorState"; else return "!!!SYSTEM REACHED BAD STATE!!! errorState "+new _BadStateExceptionLiftSystem().toString()+" ";
-case 15: if (_mode == 0) return "doorClosed"; else return "doorClosed";
-case 12: if (_mode == 0) return "doorOpen"; else return "doorOpen";
-case 13: if (_mode == 0) return "moveLift"; else return "moveLift";
+case 29: if (_mode == 0) return "errorState"; else return "!!!SYSTEM REACHED BAD STATE!!! errorState "+new _BadStateExceptionLiftSystem().toString()+" ";
+case 33: if (_mode == 0) return "doorClosed"; else return "doorClosed";
+case 30: if (_mode == 0) return "doorOpen"; else return "doorOpen";
+case 31: if (_mode == 0) return "moveLift"; else return "moveLift";
 default: return "!!!SYSTEM REACHED AN UNKNOWN STATE!!!";
 }
 }

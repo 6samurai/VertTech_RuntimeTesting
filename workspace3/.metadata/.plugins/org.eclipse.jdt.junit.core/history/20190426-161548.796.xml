@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ModelTesting_InputGenerator (1)" project="VertTech_RuntimeTesting" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="inputGenerator.ModelTesting_InputGenerator" incomplete="true">
+    <testcase name="LiftSystemModelRunner" classname="inputGenerator.ModelTesting_InputGenerator" incomplete="true"/>
+  </testsuite>
+</testrun>

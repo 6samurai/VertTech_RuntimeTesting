@@ -1,0 +1,40 @@
+floor: 0
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>doorClosed
+Lift is moving
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+Lift moving to next floor : true
+[LiftProperties]MOVED ON METHODCALL: void com.liftmania.Lift.setMoving(boolean) TO STATE::> moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift
+[LiftProperties]AUTOMATON::> LiftProperties(com.liftmania.Lift@1cbbffcd ) STATE::>moveLift

@@ -48,6 +48,8 @@ public class LiftController {
 	 */
 	public void moveLift(int liftNumber, int floorNumber) {
 		moveLift(lifts[liftNumber],  floorNumber);
+	//	openLiftDoor(liftNumber,floorNumber);
+	//	closeLiftDoor(liftNumber,floorNumber);
 	}
 
 	public void moveLift(Lift lift, int floorNumber) {
@@ -58,7 +60,7 @@ public class LiftController {
 		}
 
 		lifts[lift.id].setIsMovingUp(moveUp);
-    //   lifts[lift.id].setMoving(true);
+       lifts[lift.id].setMoving(true);
 		//The animation process is trusted with updating the state of the lift (floorNumber, moving, etc)
 		visualiser.animateLiftMovement(lift, floorNumber);
 	}
@@ -89,7 +91,8 @@ public class LiftController {
 	 */
 	public void openLiftDoor(int liftNumber, int floor) {
 		Lift lift = lifts[liftNumber];
-		lift.openDoors();
+	//	lift.setMoving(false);
+	//	lift.openDoors();
 		visualiser.animateLiftOpen(lift, floor);
 		/*visualiser.addAnimationCommand(new AnimationCommand(
 				AnimationCommand.Command.open, liftNumber, lift.getFloor(), -1));*/
@@ -114,8 +117,8 @@ public class LiftController {
 		Lift lift = closestLifts.get((int)(Math.random() * (closestLifts.size())));
 
 		moveLift(lift, floor);
-		openLiftDoor(lift.id,floor);
-		closeLiftDoor(lift.id,floor);
+	//	openLiftDoor(lift.id,floor);
+	//	closeLiftDoor(lift.id,floor);
 	}
 
 
@@ -145,7 +148,13 @@ public class LiftController {
 
 	}
 
-
+	public void inputAction(boolean action, int liftID, int floor){
+		if(action){
+			moveLift(liftID,floor);
+		} else{
+			callLiftToFloor(floor);
+		}
+	}
 
 	public static void main(String[] args) throws Exception {
 		new LiftController(6, 3, false);
